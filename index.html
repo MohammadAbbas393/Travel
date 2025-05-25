@@ -185,6 +185,7 @@
   <!-- 
     - #FOOTER
   -->
+    
 
   <footer class="footer">
 
@@ -468,7 +469,7 @@
     addUserMessage(input);
     chatInput.value = "";
 
-    fetch("http://localhost:5001/chat", {
+    fetch("https://travel-aiy4.onrender.com/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: input })
@@ -511,6 +512,21 @@ function addBotMessage(message) {
     }, 6 * 60 * 1000);
   }
 
+  if (footerForm) {
+    footerForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const inputField = footerForm.querySelector("input");
+      const value = inputField.value.trim();
+      if (!value) return;
+
+      chatInput.value = value;         // copy into chat box
+      inputField.value = "";           // clear footer field
+      showChatbot();                   // open chatbot
+      processUserInput();              // send input to backend
+    });
+  }
+
+
   function sendEmailToAgent() {
     fetch("https://formspree.io/f/xanogeoq", {
       method: "POST",
@@ -548,3 +564,4 @@ function addBotMessage(message) {
 </body>
 
 </html>
+

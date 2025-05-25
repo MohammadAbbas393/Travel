@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: darazi-chatbot
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: python chatbot.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+    runtime: python

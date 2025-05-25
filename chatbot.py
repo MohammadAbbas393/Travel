@@ -14,23 +14,20 @@ CORS(app)
 def get_response(user_input):
     user_input = user_input.lower().strip()
 
-    greetings = ["hi", "hello", "hey", "how are you", "what's up", "yo", "sup"]
-    if any(greet in user_input for greet in greetings):
-        return "👋 Hello! How can I assist you today?"
-
-    # Handle numbers 1-5
     if user_input in ["1", "introduction", "intro", "about"]:
         return knowledge["introduction"]
-    elif user_input in ["2", "adha", "adha package"]:
+    elif user_input in ["2", "adha"]:
         return knowledge["packages"]["adha"]
-    elif user_input in ["3", "sharm", "sharm package"]:
+    elif user_input in ["3", "sharm"]:
         return knowledge["packages"]["sharm"]
-    elif user_input in ["4", "hours", "working hours", "operation"]:
+    elif user_input in ["4", "hours", "operation"]:
         return knowledge["operation_hours"]
-    elif user_input in ["5", "agent", "connect", "connect to agent", "help"]:
-        return "📨 Connecting you to an agent... Please wait."
+    elif user_input in ["5", "agent", "contact"]:
+        return knowledge["contact_agent"]
+    else:
+        return "🤔 I'm not sure I understand. Please ask about: 1. Introduction, 2. Adha, 3. Sharm, 4. Hours, 5. Agent"
 
-    return "🤔 I'm not sure I understand. Could you try rephrasing?"
+
 
 # Chat route
 @app.route('/chat', methods=['POST'])
