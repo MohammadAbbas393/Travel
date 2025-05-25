@@ -3,5 +3,5 @@ services:
     name: darazi-chatbot
     env: python
     buildCommand: ""
-    startCommand: python chatbot.py
+    startCommand: gunicorn chatbot:app
     autoDeploy: true
